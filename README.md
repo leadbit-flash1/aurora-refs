@@ -15,6 +15,8 @@ All images are 768×1344 PNG.
 | `poses/pose_aurora_pilates.png` | Aurora layout sheet: outfit colours only (see note below) | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/poses/pose_aurora_pilates.png |
 | `poses/collage_aurora_pilates.png` | Aurora face pasted on the layout sheet | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/poses/collage_aurora_pilates.png |
 
+Work in progress lives in `wip/`. Each WIP folder has a `STATUS.json` saying what's done, what's broken and what to run next. **Read it before generating anything.**
+
 Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link points to a web page, not to the image.
 
 ## Space to use
@@ -47,7 +49,7 @@ Use the same settings with `"mode": "Transform & Swap (2 Refs)"` and add `ref_im
 Notes:
 
 - `custom_repo` and `custom_file` are required fields. Send them as empty strings.
-- Viggle Turbo always runs 6 steps. One generation takes about 5–7 s of GPU time.
+- Viggle Turbo always runs 6 steps and ignores the `steps` field. One generation takes about 5–7 s of GPU time. Hands come out blurry, so use it for drafts only (see "Steps and quality" below).
 - The Space can't take more than 2 references. To pass more, merge them into one collage image and use it as one of the two refs.
 
 ## Prompt that worked: Aurora, pilates, GTA V style
@@ -61,6 +63,34 @@ Lessons:
 - **Put the style words first and make them strong.** "GTA V style" alone at the end of the prompt comes out semi-photographic. Thick outlines, cel shading and "no photorealism" at the start give the loading-screen look.
 - **Don't use `poses/pose_aurora_pilates.png` as a pose reference.** It's a standing stick figure, so the model copies a standing pose and even the heels. Describe the exercise in the prompt and use 1 ref mode instead.
 - **Name the footwear** (sneakers, or grip socks for the mat). If you don't, the model carries over shoes from the references.
+
+## Steps and quality
+
+Same prompt, same seed `584075567`, 1-ref mode:
+
+| Setting | Steps | GPU time | Result |
+|---|---|---|---|
+| Viggle Turbo | 6 (fixed) | 5.4 s | Style OK, hands blurry and fused |
+| Base, no LoRA | 16 | 10.2 s | Sharp fingers, but an **extra third hand** |
+| Base, no LoRA | 28 | ~17 s expected | **Not tested yet**, runs limit hit |
+| Quality Fix LoRA | 28 | ~17 s expected | **Not tested yet**, runs limit hit |
+
+The Space charges 60 s of quota per call whatever the step count. Up to about 40 steps still finishes well inside 60 s, so more steps cost no extra quota. 16 steps is too few for the base model. The next candidates are 28 steps with the base model and 28 steps with Quality Fix.
+
+## Work in progress
+
+### `wip/aurora_pilates_gta/`: WIP, damaged
+
+| | |
+|---|---|
+| Status | **WIP / DAMAGED, not final** |
+| Pose, style, outfit, face | OK |
+| Hands | Broken: extra third hand by her head, and her right hand rests on the knee |
+| Clean image | [`aurora_pilates_gta_base16_DAMAGED.png`](wip/aurora_pilates_gta/aurora_pilates_gta_base16_DAMAGED.png) |
+| Defects marked | [`aurora_pilates_gta_base16_DAMAGED_annotated.png`](wip/aurora_pilates_gta/aurora_pilates_gta_base16_DAMAGED_annotated.png). Red = damaged, yellow = weak, green = OK |
+| Exact params, prompt, defect boxes, next steps | [`STATUS.json`](wip/aurora_pilates_gta/STATUS.json) |
+
+**Next agent:** once the ZeroGPU limit resets, rerun the params in `STATUS.json` at 28 steps, first with the base model, then with Quality Fix. Keep the version whose hands are correct. Then update `STATUS.json`, and move the image to `outputs/` only when the hands are clean.
 
 ## Known issues
 
@@ -84,6 +114,8 @@ Use Spaces with separate image fields instead.
 ### ZeroGPU quota
 
 The Guaryn Space reserves **60 s** of ZeroGPU quota per call, even though one generation takes about 6 s. Once less than 60 s of daily quota is left, calls are rejected with "quota exceeded". Quota refills over a rolling 24 hours. Prepare collages and prompts before you call it.
+
+There's also a daily **runs** limit. On 2026-11-24 the free account was blocked after about 5 generations with `ZeroGPU quota exceeded: You have exceeded your ZeroGPU runs limit`. Plan each test run before you spend it.
 
 ### Other Spaces tested
 

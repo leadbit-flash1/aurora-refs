@@ -1,0 +1,67 @@
+{
+  "task": "Aurora doing pilates (teaser pose), GTA V loading-screen style, sport outfit with sneakers",
+  "status": "WIP_DAMAGED",
+  "final": false,
+  "updated": "2026-11-24",
+  "files": {
+    "clean": "aurora_pilates_gta_base16_DAMAGED.png",
+    "annotated": "aurora_pilates_gta_base16_DAMAGED_annotated.png"
+  },
+  "verdict": {
+    "pose": "OK",
+    "style": "OK",
+    "outfit_footwear": "OK",
+    "face_identity": "OK",
+    "hands": "DAMAGED"
+  },
+  "defects": [
+    {
+      "id": "extra_hand",
+      "severity": "damaged",
+      "bbox_xyxy": [210, 280, 475, 445],
+      "note": "Third hand next to the head, not attached to any arm. Remove it and fill in with hair and sky."
+    },
+    {
+      "id": "right_hand_on_knee",
+      "severity": "weak",
+      "bbox_xyxy": [265, 555, 435, 655],
+      "note": "Her right hand rests on her knee instead of reaching forward parallel to the legs. Acceptable, but not the intended teaser arms."
+    },
+    {
+      "id": "left_hand",
+      "severity": "ok",
+      "bbox_xyxy": [600, 440, 766, 520],
+      "note": "Correct, reaching forward."
+    }
+  ],
+  "generation": {
+    "space": "Guaryn/qwen-image-2.1-uncensored-aio-loras",
+    "tool": "qwen_image_2_1_uncensored_aio_loras_generate",
+    "params": {
+      "mode": "Edit Image (1 Ref)",
+      "lora_adapter": "None (Base Uncensored)",
+      "steps": 16,
+      "seed": 584075567,
+      "randomize_seed": false,
+      "aspect_ratio": "Portrait · 9:16 (768x1344)",
+      "custom_repo": "",
+      "custom_file": "",
+      "ref_image_1": "https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/aurora_portrait_gta_v1.png"
+    },
+    "prompt": "Grand Theft Auto V loading screen illustration, Rockstar-style comic art: thick bold black contour lines, flat cel-shaded colors with hard graphic shadows, high contrast, stylized vector-like painting, no photorealism. Subject: the woman from image 1 (same face, long brown hair, silver hoop earrings, crescent moon necklace) doing a pilates teaser pose on a black yoga mat, body in a V shape balanced on her hips, both legs straight and raised, both arms stretched forward parallel to her legs, hands separate and relaxed with fingers extended, palms facing down, anatomically correct hands with five fingers each. Full body in frame. White sports crop top, light grey sport leggings with small orange chevrons at the knees, white running sneakers. Background: stylized sunny Los Santos beach gym with palm trees and orange sky, same comic poster style.",
+    "gpu_seconds": 10.2
+  },
+  "steps_tests": [
+    {"lora": "Viggle Turbo (6-Step)", "steps": 6, "result": "style OK, hands blurry and fused; steps field is ignored, LoRA always runs 6"},
+    {"lora": "None (Base Uncensored)", "steps": 16, "result": "this image: sharp fingers, but extra 3rd hand"},
+    {"lora": "None (Base Uncensored)", "steps": 28, "result": "NOT RUN, ZeroGPU daily runs limit hit"},
+    {"lora": "Quality Fix", "steps": 28, "result": "NOT RUN, ZeroGPU daily runs limit hit"}
+  ],
+  "next_steps": [
+    "When the ZeroGPU runs limit has reset, rerun the exact params above with steps=28 (base, no LoRA). Keep the same seed so results stay comparable.",
+    "Run the same thing with lora_adapter='Quality Fix' and steps=28.",
+    "Keep whichever has correct hands (2 hands, 5 fingers each, both reaching forward). If both fail, try another seed at 28 steps. The pose and style come from the prompt, not the seed.",
+    "Save the result as wip/aurora_pilates_gta/aurora_pilates_gta_<setting>_<seed>.png. Set status FINAL here only if the hands are clean, then move it to outputs/.",
+    "Don't waste runs: on 2026-11-24 the free account hit the ZeroGPU runs limit after about 5 generations, and each call reserves 60 s of quota whatever the step count."
+  ]
+}
