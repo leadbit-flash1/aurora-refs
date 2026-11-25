@@ -20,6 +20,12 @@ Work in progress lives in `wip/`. Each WIP folder has a `STATUS.json` saying wha
 
 Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link points to a web page, not to the image.
 
+## ⚠️ To regenerate
+
+| File | Problem | What to change |
+|---|---|---|
+| `outputs/aurora_stage_584075567.png` | Outfit too dark: navy sequins and dark tights merge with the violet stage light | Brighter costume (e.g. silver/white or light lilac sequined top, light tights), keep modest PEGI-12 cut; background colour must contrast with the costume |
+
 ## Character rules
 
 - **Cops' wives are NEVER shown from the front — always from behind** (back view, faces not visible), so they don't take attention from the main characters.
@@ -32,7 +38,7 @@ Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link
 |---|---|
 | `outputs/aurora_pilates_side_584075567.png` | Aurora pilates teaser, side view, transparent PNG sprite (approved pose) |
 | `outputs/aurora_pilates_side_584075567_src.png` | Same, original on flat orange background |
-| `outputs/aurora_stage_584075567.png` | Aurora stage costume (PEGI-12: long sleeves, high neck, tights, chiffon skirt), pole, glowing UV henna wings; generated on flat deep violet, cut with `--ml` (`_src.png` = on violet) |
+| `outputs/aurora_stage_584075567.png` | ⚠️ **TEMPORARY — REGENERATE: outfit too dark.** Aurora stage costume (PEGI-12: long sleeves, high neck, tights, chiffon skirt), pole, glowing UV henna wings; generated on flat deep violet, cut with `--ml` (`_src.png` = on violet) |
 | `outputs/aurora_casual_v3_584075567.png` | **Approved.** Aurora casual/riding sprite: linen shirt, jeans, knee-high riding boots, apple; dancer proportions (~8 heads, long legs); transparent PNG (`_src.png` = on orange) |
 
 Params: Guaryn Space, `Edit Image (1 Ref)`, base model (no LoRA), 28 steps, seed `584075567`, 9:16; prompt = the pilates prompt below + "head held straight and upright, not tilted", "Side view, camera at mat level", flat orange background.
