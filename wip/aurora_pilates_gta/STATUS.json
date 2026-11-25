@@ -1,6 +1,6 @@
 {
   "task": "Aurora doing pilates (teaser pose), GTA V loading-screen style, sport outfit with sneakers",
-  "status": "CANDIDATE_REVIEW",
+  "status": "SUPERSEDED",
   "final": false,
   "updated": "2026-11-25",
   "files": {
@@ -95,5 +95,6 @@
     "If framing must change: same params, add to prompt \"side view, camera at mat level from the side, profile of the body\" and keep seed.",
     "Quality Fix 28-step comparison not run yet (optional).",
     "Move to outputs/ and set FINAL only after user approval."
-  ]
+  ],
+  "superseded_by": "outputs/aurora_pilates_side_584075567.png (same seed, side view, flat sunset background, cut out)"
 }

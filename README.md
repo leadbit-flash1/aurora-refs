@@ -8,7 +8,8 @@ All images are 768×1344 PNG.
 
 | File | What it is | Raw URL |
 |---|---|---|
-| `aurora_portrait_gta_v1.png` | Aurora, face/identity reference | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/aurora_portrait_gta_v1.png |
+| `aurora_face_ref_straight.png` | **Aurora, face/identity reference — use this one.** The portrait rotated 32° so the head is upright; prevents the tilt from carrying into new images |
+| `aurora_portrait_gta_v1.png` | Aurora, original approved portrait (head tilted — don't use as ref for new poses) | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/aurora_portrait_gta_v1.png |
 | `estebald_human_v1.png` | Estebald, human form | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/estebald_human_v1.png |
 | `estebald_horse_v2.png` | Estebald, horse form | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/estebald_horse_v2.png |
 | `petrovich_portrait_v3.png` | Petrovich, portrait | https://raw.githubusercontent.com/leadbit-flash1/aurora-refs/main/petrovich_portrait_v3.png |
@@ -18,6 +19,21 @@ All images are 768×1344 PNG.
 Work in progress lives in `wip/`. Each WIP folder has a `STATUS.json` saying what's done, what's broken and what to run next. **Read it before generating anything.**
 
 Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link points to a web page, not to the image.
+
+## Character rules
+
+- **Cops' wives are NEVER shown from the front — always from behind** (back view, faces not visible), so they don't take attention from the main characters.
+- **Cops are always silhouettes in shadow** — faces never visible.
+- **Sprites: generate on a flat warm sunset-orange background** (e.g. `#F78929`), not greenscreen: a green key tints rim light and reflections green. Say "plain flat warm sunset orange background, completely empty, no objects" and cut it out with a colour key; no ML background removal needed.
+
+## Outputs
+
+| File | What it is |
+|---|---|
+| `outputs/aurora_pilates_side_584075567.png` | Aurora pilates teaser, side view, transparent PNG sprite (approved pose) |
+| `outputs/aurora_pilates_side_584075567_src.png` | Same, original on flat orange background |
+
+Params: Guaryn Space, `Edit Image (1 Ref)`, base model (no LoRA), 28 steps, seed `584075567`, 9:16; prompt = the pilates prompt below + "head held straight and upright, not tilted", "Side view, camera at mat level", flat orange background.
 
 ## Space to use
 
