@@ -24,7 +24,7 @@ Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link
 
 - **Cops' wives are NEVER shown from the front — always from behind** (back view, faces not visible), so they don't take attention from the main characters.
 - **Cops are always silhouettes in shadow** — faces never visible.
-- **Sprites: generate on a flat warm sunset-orange background** (e.g. `#F78929`), not greenscreen: a green key tints rim light and reflections green. Say "plain flat warm sunset orange background, completely empty, no objects" and cut it out with `python3 tools/key_out.py in.png out.png` (colour key, soft edges, keeps small bg-coloured clothing details, clears big gaps like between the legs); no ML background removal needed.
+- **Sprites: generate on a flat warm sunset-orange background** (e.g. `#F78929`), not greenscreen: a green key tints rim light and reflections green. Say "plain flat warm sunset orange background, completely empty, no objects" and cut it out with `python3 tools/key_out.py in.png out.png` (colour key, soft edges, keeps small bg-coloured clothing details, clears big gaps like between the legs); no ML background removal needed. Pick a background colour that contrasts with the costume; if parts of the costume match it (dark tights on violet), add `--ml`.
 
 ## Outputs
 
@@ -32,6 +32,7 @@ Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link
 |---|---|
 | `outputs/aurora_pilates_side_584075567.png` | Aurora pilates teaser, side view, transparent PNG sprite (approved pose) |
 | `outputs/aurora_pilates_side_584075567_src.png` | Same, original on flat orange background |
+| `outputs/aurora_stage_584075567.png` | Aurora stage costume (PEGI-12: long sleeves, high neck, tights, chiffon skirt), pole, glowing UV henna wings; generated on flat deep violet, cut with `--ml` (`_src.png` = on violet) |
 | `outputs/aurora_casual_v3_584075567.png` | **Approved.** Aurora casual/riding sprite: linen shirt, jeans, knee-high riding boots, apple; dancer proportions (~8 heads, long legs); transparent PNG (`_src.png` = on orange) |
 
 Params: Guaryn Space, `Edit Image (1 Ref)`, base model (no LoRA), 28 steps, seed `584075567`, 9:16; prompt = the pilates prompt below + "head held straight and upright, not tilted", "Side view, camera at mat level", flat orange background.

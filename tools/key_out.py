@@ -1,5 +1,5 @@
 # Cut a sprite out of a flat-colour background (e.g. sunset orange) into a transparent PNG.
-# usage: python3 key_out.py input.png output.png
+# usage: python3 key_out.py input.png output.png [--ml]
 # The background colour is sampled from the top/bottom rows. Edges are soft and colour-decontaminated,
 # and background-coloured details enclosed by the figure (e.g. orange stripes on clothes) are kept.
 import sys
@@ -26,6 +26,12 @@ sizes = ndimage.sum(holes, lab, range(1, n + 1))
 small = np.isin(lab, [i + 1 for i, v in enumerate(sizes) if v < 2500])   # small = clothing details; big = gaps (between legs)
 small = ndimage.binary_dilation(small, iterations=3) & (alpha < 0.98)
 rgb[small], alpha[small] = src[small], 1
+
+if "--ml" in sys.argv:   # costume close to the bg colour: fill the body from an ML mask (pip install "rembg[cpu]")
+    from rembg import remove, new_session
+    ml = np.array(remove(Image.open(sys.argv[1]).convert("RGB"), session=new_session("isnet-general-use")))[..., 3] > 153
+    ml = ndimage.binary_erosion(ml, iterations=2)
+    rgb[ml], alpha[ml] = src[ml], 1
 
 Image.fromarray(np.dstack([rgb.astype(np.uint8), (alpha * 255).astype(np.uint8)]), "RGBA").save(sys.argv[2])
 print("bg", bg.astype(int).tolist())
