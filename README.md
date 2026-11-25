@@ -32,9 +32,14 @@ Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link
 |---|---|
 | `outputs/aurora_pilates_side_584075567.png` | Aurora pilates teaser, side view, transparent PNG sprite (approved pose) |
 | `outputs/aurora_pilates_side_584075567_src.png` | Same, original on flat orange background |
-| `outputs/aurora_casual_584075567.png` | Aurora casual/riding sprite: linen shirt, jeans, riding boots, apple; transparent PNG (`_src.png` = on orange) |
+| `outputs/aurora_casual_v3_584075567.png` | **Approved.** Aurora casual/riding sprite: linen shirt, jeans, knee-high riding boots, apple; dancer proportions (~8 heads, long legs); transparent PNG (`_src.png` = on orange) |
 
 Params: Guaryn Space, `Edit Image (1 Ref)`, base model (no LoRA), 28 steps, seed `584075567`, 9:16; prompt = the pilates prompt below + "head held straight and upright, not tilted", "Side view, camera at mat level", flat orange background.
+
+## Prompt add-ons that fixed problems
+
+- Body proportions (from the model's body photo, measured, sent as text only — the photo itself is never uploaded): "Body proportions of a tall slim athletic dancer: about 8 heads tall, small head relative to the body, very long slender legs making up half of her total height, narrow waist, slim toned arms, narrow shoulders, slim hips."
+- Legs merging in profile: "feet apart at shoulder width, BOTH legs clearly visible and separate, two legs and two feet, anatomically correct".
 
 ## Space to use
 
