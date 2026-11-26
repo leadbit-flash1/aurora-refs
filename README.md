@@ -26,6 +26,10 @@ Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link
 |---|---|---|
 | `outputs/aurora_stage_584075567.png` | Outfit too dark: navy sequins and dark tights merge with the violet stage light | Brighter costume (e.g. silver/white or light lilac sequined top, light tights), keep modest PEGI-12 cut; background colour must contrast with the costume |
 
+## Putting sprites into the engine
+
+`python3 tools/prep_sprite.py outputs/<name>.png newtex/<engine_name>.png [--flip]` crops to the figure, scales all characters with one fixed factor (a standing figure of ~1260 px in a 768x1344 generation becomes 1000 px) and puts the feet on the bottom edge. The engine mirrors right-side characters, so a character on the right that faces left in the generation needs `--flip` (Petrovich, Estebald, horse). Wide left-side sprites (pilates, stage) get transparent padding on the left so they don't go off screen.
+
 ## Character rules
 
 - **Cops' wives are NEVER shown from the front — always from behind** (back view, faces not visible), so they don't take attention from the main characters.
