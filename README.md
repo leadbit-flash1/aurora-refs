@@ -26,6 +26,25 @@ Always link to `raw.githubusercontent.com/...`. A `github.com/.../blob/...` link
 |---|---|---|
 | `outputs/aurora_stage_584075567.png` | Outfit too dark: navy sequins and dark tights merge with the violet stage light | Brighter costume (e.g. silver/white or light lilac sequined top, light tights), keep modest PEGI-12 cut; background colour must contrast with the costume |
 
+## Backgrounds (`outputs/bg/`)
+
+Text to Image, base model (no LoRA), 28 steps, seed `584075567`, 9:16 (768x1344). The engine copy is a JPG with the same name in `newtex/` (`python3 tools/save_bg.py` in the build tools).
+Prompt template: the GTA V style opening from the pilates prompt + "Vertical background for a visual novel, no characters, no people, no readable text, no logos. Scene: ..." + "The middle and lower part of the frame stays open and uncluttered floor" (room for the sprites and the text box).
+
+| File | Scene | Note |
+|---|---|---|
+| `bg_club_night.png` | Club at night: UV stage, pole, neon arches | audience as black silhouettes at the bottom |
+| `bg_pilates.png` | Warehouse rooftop at sunrise, mats, ginger cat | 5 mats instead of 6 |
+| `bg_stable.png` | Stable by day, sunbeams, straw | |
+| `bg_shop.png` | Petrovich's shop: chocolate, sparkling wine, marathon medals | |
+| `bg_shop_wrecked.png` | Same shop at night, wrecked, broken window, moon | Edit Image from `bg_shop.png` changed nothing; made from text instead |
+| `bg_port.png` | Port by day, schooner with lion figurehead | |
+| `bg_port_night.png` | Night waterfront, neon, stars | neon sign has gibberish lettering |
+
+Still to do: `bg_club_day`, `bg_stable_night`, `bg_schooner_cabin` (prompt ready: captain's cabin, Leo star chart, brass kettle, starfish pet), `bg_club_basement`, `bg_port_chase`, `bg_dawn`, `bg_deck_night`, `bg_sunset_ride`.
+
+When `Guaryn/...` says "Queue is full", call the same Space copy `JaxK49/qwen-image-2.1-uncensored-aio-loras` through `dynamic_space` (tool `qwen_image_2_1_uncensored_aio_loras_generate`, same parameters). It uses the same ZeroGPU runs limit (8 runs on 2026-11-27).
+
 ## Putting sprites into the engine
 
 `python3 tools/prep_sprite.py outputs/<name>.png newtex/<engine_name>.png [--flip]` crops to the figure, scales all characters with one fixed factor (a standing figure of ~1260 px in a 768x1344 generation becomes 1000 px) and puts the feet on the bottom edge. The engine mirrors right-side characters, so a character on the right that faces left in the generation needs `--flip` (Petrovich, Estebald, horse). Wide left-side sprites (pilates, stage) get transparent padding on the left so they don't go off screen.
